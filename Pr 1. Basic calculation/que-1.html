@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question-1</title>
+</head>
+<body>
+    <h1>Question-1</h1>
+    <h2 id="a"></h2>
+    <h2 id="b"></h2>
+    <h2 id="add"></h2>
+    <h2 id="sub"></h2>
+    <h2 id="mul"></h2>
+    <h2 id="division"></h2>
+    <h2 id="modulo"></h2>
+
+    <script type="text/javascript">
+        var a=parseInt(prompt("Enter no a : "));
+        var b=parseInt(prompt("Enter no b : "));
+        document.getElementById("a").innerHTML = `A : ${a}`;
+        document.getElementById("b").innerHTML = `B : ${b}`;
+        document.getElementById("add").innerHTML = `Addition :- ${a+b}`;
+        document.getElementById("sub").innerHTML = `Subtraction :- ${a-b}`;
+        document.getElementById("mul").innerHTML = `Multiplication :- ${a*b}`;
+        document.getElementById("division").innerHTML = `Division :- ${a/b}`;
+        document.getElementById("modulo").innerHTML = `Modulo :- ${a%b}`;
+
+    </script>
+</body>
+</html>

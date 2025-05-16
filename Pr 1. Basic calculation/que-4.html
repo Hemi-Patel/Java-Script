@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question-4</title>
+</head>
+<body>
+    <h1>Question-4</h1>
+    <h2 id="bs"></h2>
+    <h2 id="hra"></h2>
+    <h2 id="da"></h2>
+    <h2 id="ta"></h2>
+    <h2 id="gs"></h2>
+
+    <script type="text/javascript">
+        var bs=parseInt(prompt("Enter Your Basic Salary : "));
+        document.getElementById("bs").innerHTML = ` Basic Salary: ${bs}`;
+        var hra=parseInt(prompt("Enter Your HRA : "));
+        document.getElementById("hra").innerHTML = ` HRA: ${hra}`;
+        var da=parseInt(prompt("Enter Your DA : "));
+        document.getElementById("da").innerHTML = ` DA: ${da}`;
+        var ta=parseInt(prompt("Enter Your TA : "));
+        document.getElementById("ta").innerHTML = ` TA: ${ta}`; 
+       
+        var gs=parseInt(bs+(bs*hra/100)+(bs*da/100)+(bs*ta/100));
+        document.getElementById("gs").innerHTML = `Gross Salary : ${gs}`;
+       
+
+    </script>
+</body>
+</html>
