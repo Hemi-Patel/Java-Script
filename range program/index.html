@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Range Program</title>
+</head>
+
+<body>
+
+    <script>
+        let marks = parseInt(prompt("Enter Your Marks:"));
+
+        if (marks >= 90 && marks <= 100) {
+            document.writeln("<h2>Your Grade is A+</h2>");
+        }
+        else if (marks >= 75 && marks <= 89) {
+            document.writeln("<h2>Your Grade is A</h2>");
+        }else if(marks>=60 && marks<=74){
+            document.writeln("<h2>Your Grade is B</h2>");
+        }else if(marks>=40  && marks<=59){
+            document.writeln("<h2>Your Grade is C</h2>");
+        }
+        else{
+            document.writeln("<h2>Fail</h2>");
+        }
+
+    </script>
+
+</body>
+
+</html>
