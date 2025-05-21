@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temperature is within a normal range</title>
+</head>
+<body>
+    <script>
+        let tmp =parseFloat( prompt("Enter Tempurature:"));
+        if (tmp >= 36  && tmp<= 37.5) {
+            document.writeln(`<h1>${tmp} is Normal Tempurature</h1>`);
+        } else {
+            document.writeln(`<h1>${tmp} is Abnormal Tempurature</h1>`);
+        }
+    </script>
+</body>
+</html>
