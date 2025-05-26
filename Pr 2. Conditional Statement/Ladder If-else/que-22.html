@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determine BMI category (Underweight, Normal, Overweight, Obese).
+    </title>
+</head>
+
+<body>
+    <script>
+        let Weight = parseFloat(prompt("Enter Your Weight:"));
+
+        if (Weight > 0 && Weight <= 18.4) {
+            document.writeln("<h1>You Are Under weight</h1>");
+        } else if (Weight >= 18.5 && Weight <= 25) {
+            document.writeln("<h1>You Are  Normal weight</h1>");
+        } else if (Weight >= 25.1 && Weight <= 29.9) {
+            document.writeln("<h1>You Are  Over weight</h1>");
+        } else {
+            document.writeln("<h1>You Are  Obese</h1>");
+        }
+    </script>
+</body>
+
+</html>

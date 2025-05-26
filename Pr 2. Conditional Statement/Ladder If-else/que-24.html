@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign blood donation eligibility based on age and weight.</title>
+</head>
+
+<body>
+    <script>
+        let age = parseInt(prompt("Enter Your Age:"));
+        let weight = parseFloat(prompt("Enter Your Weight:"));
+
+        if (age >= 18 && age <= 65) {
+            if (weight >= 45) {
+                document.writeln("<h1>You Are Eligible to Donate Blood</h1>");
+            } else {
+                document.writeln("<h1>You Can't Donate Blood Because You Are Under weight.</h1>");
+            }
+        } else {
+            if (age < 18) {
+                document.writeln("<h1>You Can't Donate Blood Because You Are Under Age.</h1>");
+            }
+            else {
+                document.writeln("<h1>You Can't Donate Blood Because You Are Senior.</h1>");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

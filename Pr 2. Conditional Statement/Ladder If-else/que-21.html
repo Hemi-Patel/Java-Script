@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign grades based on percentage.
+    </title>
+</head>
+
+<body>
+    <script>
+        let percentage = parseFloat(prompt("Enter Your Percentage:"));
+
+        if (percentage >= 90 && percentage <= 100) {
+            document.writeln("<h1>Your Grade is A+ </h1>");
+        }else if (percentage >= 75 && percentage <= 89) {
+            document.writeln("<h1>Your Grade is A</h1>");
+        } else if (percentage >= 60 && percentage <= 74) {
+            document.writeln("<h1>Your Grade is B</h1>");
+        } else if (percentage >= 40 && percentage <= 59) {
+            document.writeln("<h1>Your Grade is C</h1>");
+        }
+        else {
+            document.writeln("<h1>Fail</h1>");
+        }
+    </script>
+</body>
+
+</html>

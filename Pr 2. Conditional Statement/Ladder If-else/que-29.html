@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determine mobile plan based on data usage.
+    </title>
+</head>
+
+<body>
+    <script>
+        let data_usage = parseInt(prompt("Enter Your Per Day Data usage"));
+
+        if (data_usage > 1 && data_usage <= 2) {
+            document.writeln("<h1>You Need to 2GB/Per Day Plan</h1>");
+        }else if(data_usage>2 && data_usage<=5){
+            document.writeln("<h1>You Need to 5GB/Per Day Plan</h1>");
+        }else if(data_usage>5 && data_usage<=8){
+            document.writeln("<h1>You Need to 8GB/Per Day Plan</h1>");
+        }else {
+            document.writeln("<h1>You Need Unlimited Per Day Plan</h1>");
+        }
+    </script>
+</body>
+
+</html>
