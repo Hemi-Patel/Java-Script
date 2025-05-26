@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determine income tax based on salary slabs.
+    </title>
+</head>
+
+<body>
+    <script>
+        let salary = parseInt(prompt("Enter Your Salary:"));
+
+        if (salary >= 0 && salary <= 30000) {
+            document.writeln("<h1>You Have No need To Pay tax</h1>");
+        } else if (salary >= 30000 && salary <= 80000) {
+            let tax = salary * 5 / 100;
+            document.writeln(`<h1>Your tax are:${tax}</h1>`);
+        }
+        else if (salary >= 80000 && salary <= 100000) {
+            let tax = salary * 10 / 100;
+            document.writeln(`<h1>Your tax are:${tax}</h1>`);
+        }
+        else if (salary >= 100000 && salary <= 200000) {
+            let tax = salary * 15 / 100;
+            document.writeln(`<h1>Your tax are:${tax}</h1>`);
+        }
+        else if (salary >= 200000 && salary <= 500000) {
+            let tax = salary * 20 / 100;
+            document.writeln(`<h1>Your tax are:${tax}</h1>`);
+        }
+        else  {
+            let tax = salary * 25 / 100;
+            document.writeln(`<h1>Your tax are:${tax}</h1>`);
+        }
+
+    </script>
+</body>
+
+</html>

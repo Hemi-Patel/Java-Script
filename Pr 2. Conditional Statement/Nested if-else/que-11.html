@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the largest among three numbers.</title>
+</head>
+
+<body>
+    <script>
+        let a = parseInt(prompt("Enter Value Of A:"));
+        let b = parseInt(prompt("Enter Value Of B:"));
+        let c = parseInt(prompt("Enter Value Of C:"));
+
+        if (a > b) {
+            if (a > c) {
+                document.writeln("<h1>A is Max</h1>");
+            }
+            else {
+                document.writeln("<h1>C is Max</h1>");
+            }
+        } else {
+            if (b > c) {
+                document.writeln("<h1>B is Max</h1>");
+            } else {
+                document.writeln("<h1>C is Max</h1>");
+            }
+        }
+    </script>
+</body>
+
+</html>

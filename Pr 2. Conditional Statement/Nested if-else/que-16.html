@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check whether a student passed both written and practical exams.
+    </title>
+</head>
+
+<body>
+
+    <script>
+        let practical_marks = parseInt(prompt("Enter Your Practical Exam Marks:"));
+        let written_marks = parseInt(prompt("Enter Your Written Exam Marks:"));
+
+        if (practical_marks >= 40) {
+            if (written_marks >= 40) {
+                document.writeln(`<h1>Congratulations!!!  You are Passed in Both Written And Practical Exam</h1>`);
+            }else{
+                document.writeln(`<h1> You are Passed In Practical Exam But Fail in Written Exam</h1>`);
+            }
+        }
+        else {
+            if (written_marks >= 40) {
+                document.writeln(`<h1> You are Passed in  Written Exam But Fail in Practical Exam</h1>`);
+            }else{
+                document.writeln(`<h1>Sorry!!! You are Fail in Both Written And Practical Exam</h1>`);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Determine if a number is within a range and also even.</title>
+</head>
+
+<body>
+    <script>
+        let n = parseInt(prompt("Enter Any Number:"));
+        if (n >= 0 && n <= 50) {
+            if (n % 2 == 0) {
+                document.writeln(`<h1> Entered Number is in Range and also It's Even Number</h1>`);
+            }
+            else {
+                document.writeln(`<h1> Entered Number is in Range but It's Not Even Number</h1>`);
+            }
+        }
+        else {
+            if (n % 2 == 0) {
+                document.writeln(`<h1> Entered Number is not in Range But It's Even Number</h1>`);
+            }
+            else {
+                document.writeln(`<h1> Entered Number is not in Range And also It's Not Even Number</h1>`);
+            }
+        }
+    </script>
+</body>
+
+</html>

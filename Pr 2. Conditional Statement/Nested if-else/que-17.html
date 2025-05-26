@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate login using username and password.</title>
+</head>
+
+<body>
+    <script>
+        let username = "hemi";
+        let password = "123456";
+
+        let enterUsername = prompt("Enter UserName:");
+        let enterPassword = prompt("Enter Password:");
+
+        if (enterUsername == username) {
+            if (enterPassword == password){
+                 document.writeln(`<h1> Login SuccessFull</h1>`);
+            }
+            else{
+                 document.writeln(`<h1> Wrong Password </h1>`);
+            }
+        }else{
+             if (enterPassword == password){
+                 document.writeln(`<h1> Wrong Username</h1>`);
+            }
+            else{
+                 document.writeln(`<h1> Wrong Username & Password </h1>`);
+            }
+        }
+    </script>
+</body>
+
+</html>

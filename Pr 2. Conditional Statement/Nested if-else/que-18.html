@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identify if a given character is a letter, digit, or symbol.</title>
+</head>
+
+<body>
+    <script>
+        let ch = prompt("Enter Any single Letter , digit or Symbol");
+        let input_ch = ch.charCodeAt(0); 
+
+        if ((input_ch >= 65 && input_ch <= 90) || (input_ch >= 97 && input_ch <= 122)) {
+            document.writeln(`<h1> Entered Character Is Letter </h1>`);
+        } else if (input_ch >= 48 && input_ch <= 57) {
+            document.writeln(`<h1> Entered Character Is Digit </h1>`);
+        } else {
+            document.writeln(`<h1> Entered Character Is Symbol </h1>`);
+        }
+    </script>
+</body>
+
+</html>
