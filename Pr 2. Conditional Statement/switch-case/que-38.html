@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display traffic signal meaning (red, yellow, green).
+</title>
+</head>
+<body>
+    <script>
+        let ch=prompt(`Enter traffic signal Light:
+                                1.Red
+                                2.Green
+                                3.yellow
+                                `);
+        switch (ch) {
+            case "Red":
+                document.writeln(`<h1>Stop</h1>`);
+                break;
+            case "Green":
+                document.writeln(`<h1>Go</h1>`);
+                break;
+            case "yellow":
+                document.writeln(`<h1>slow down and prepare to stop</h1>`);
+                break;
+            default:
+                document.writeln(`<h1>Your choise is Wrong</h1>`);
+                break;
+        }
+    </script>
+</body>
+</html>

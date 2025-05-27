@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate a simple ATM menu (withdraw, deposit, balance check).
+</title>
+</head>
+<body>
+    <script>
+        let ch=parseInt(prompt(`Enter Your Choise:
+                                1.Withdraw
+                                2.Deposite
+                                3.Balance Check
+                                `));
+        switch (ch) {
+            case 1:
+                document.writeln(`<h1>WithDraw Money</h1>`);
+                break;
+            case 2:
+                document.writeln(`<h1>Deposite Money </h1>`);
+                break;
+            case 3:
+                document.writeln(`<h1>Balance Check</h1>`);
+                break;
+            default:
+                document.writeln(`<h1>Your choise is Wrong</h1>`);
+                break;
+        }
+    </script>
+</body>
+</html>
