@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Calculate the factorial of a number using a while loop.</title>
+</head>
+<body>
+     <script>
+        let n = parseInt(prompt("Enter Number to Find the Factorial:"));
+        let fact = 1;
+        let no=n;
+        while (n >= 1) {
+             fact*=n;
+             n--;
+        }
+        document.writeln(`<h1>Factorial of  ${no} is : ${fact}</h1>`);
+    </script>
+</body>
+</html>
