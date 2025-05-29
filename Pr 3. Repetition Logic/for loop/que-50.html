@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50. Calculate the factorial of a number using a for loop.</title>
+</head>
+<body>
+    <script>
+        let n=parseInt(prompt("Enter any number to find factorial:"));
+        let fact=1;
+        for (let i = n; i >= 1; i--) {
+            fact*=i;
+        }
+        document.writeln(`<h1>Factorial of ${n} is  : ${fact}</h1>`);
+    </script>
+    
+</body>
+</html>

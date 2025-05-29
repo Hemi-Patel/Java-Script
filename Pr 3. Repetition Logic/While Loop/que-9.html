@@ -9,12 +9,12 @@
     <script>
         let n=parseInt(prompt("Enter Any Number:"));
         let sum=0;
-        while(n>=0){
+        while(n!=0){
             let d=n%10;
             sum=sum+d;
-            n=n/10; 
+            n=Math.floor(n/10); 
         }
-        document.writeln(`Sum of the digits of a given number ${sum}`);
+        document.writeln(`<h1>Sum of the digits of a given number ${sum}</h1>`);
 
     </script>
 </body>
