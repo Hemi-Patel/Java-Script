@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Write a function to convert Celsius to Fahrenheit.</title>
+</head>
+<body>
+    <script>
+        function celsiusToFahrenheit(celsius) {
+            return (celsius * 9/5) + 32;
+        }
+        let celsius=parseFloat(prompt("Enter Celsius to convert into Fahrenheit:"));
+        let fahrenheit=celsiusToFahrenheit(celsius);
+        document.writeln(`<h1>Fahernheit is:${fahrenheit}</h1>`);
+    </script>
+</body>
+</html>

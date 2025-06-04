@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31. Recursive function to calculate factorial.
+
+    </title>
+</head>
+<body>
+    <script>
+        function factorial (n){
+            if(n==0){
+                return 1;
+            }else{
+                return n * factorial(n-1);
+            }
+            
+        }
+        let n=parseInt(prompt("Enter Any Number to find Factorial:"));
+        let fact = factorial(n);
+        document.writeln(`<h1>Factorial  is:${fact}</h1>`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17. Arrow function to calculate area of a triangle.</title>
+</head>
+<body>
+    <script>
+        const areaTriangle =(b, h)=>
+        {
+            return (1/2)*b*h;
+        }
+        let b=parseInt(prompt("Enter Base of Triangle"));
+        let h=parseInt(prompt("Enter Height of Triangle"));
+        let area=areaTriangle(b,h);
+        document.writeln(`<h1>Area of Triangle is ${area}</h1>`);
+    </script>
+</body>
+</html>
