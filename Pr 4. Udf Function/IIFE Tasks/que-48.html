@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>48. IIFE to determine if a number is odd or even.</title>
+</head>
+
+<body>
+    <script>
+        (function (n) {
+            if (n % 2 == 0) {
+                console.log(`${n} is Even Number`);
+            } else {
+                console.log(`${n} is Odd Number`);
+            }
+        })(parseInt(prompt("Enter Any Number:")) );
+    </script>
+</body>
+
+</html>

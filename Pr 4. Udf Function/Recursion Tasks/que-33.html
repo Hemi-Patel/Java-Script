@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33. Recursive function to compute the nth Fibonacci number.</title>
+</head>
+
+<body>
+
+    <script>
+        function fibo(n) {
+            if (n <= 1) {
+                return n;
+            }
+            return fibo(n - 1) + fibo(n - 2);
+        }
+        let n = parseInt(prompt("Enter Any Number to find sum of all Numbers:"));
+        for (let i = 0; i < n; i++) {
+            document.writeln(`<h1>${fibo(i)}</h1>`);
+        }
+
+
+    </script>
+</body>
+
+</html>

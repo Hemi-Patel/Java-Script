@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32. Recursive function to sum all numbers up to n.</title>
+</head>
+<body>   
+    <script>
+        function sum (n){
+            if(n==0){
+                return 0;
+            }else{
+                return n + sum(n-1);
+            }
+        }
+        let n=parseInt(prompt("Enter Any Number to find sum of all Numbers:"));
+        let s = sum(n);
+        document.writeln(`<h1>Sum of All Number Up to ${n}  is:${s}</h1>`);
+    </script>
+</body>
+</html>
