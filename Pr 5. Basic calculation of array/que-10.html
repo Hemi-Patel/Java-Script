@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. Count how many numbers are divisible by 3.</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1> Original Array :${a}</h1>`);
+        let count = 0;
+        for (let i = 0; i < n; i++) {
+            if (a[i] % 3 === 0) {
+                count++;
+            }
+        }
+        document.writeln(`<h1>The numbers of an array element is divisible by 3 is: ${count}</h1>`);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17. Sort an array in descending order.</title>
+</head>
+<body>
+    <script>
+        let a = [];
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1>Original Array :${a}</h1>`);
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; j < n - 1 - i; j++) {
+                if (a[j] < a[j + 1]) {
+                    let temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
+        document.writeln(`<h1  >Sorted Array in Descending Order: ${a}</h1>`);
+        
+    </script>
+</body>
+</html>

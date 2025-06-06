@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. Reverse the array.</title>
+</head>
+<body>
+    <script>
+        let a = [];
+        let r = 0;
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1> Original Array :${a}</h1>`);
+        for (let i = 0; i < Math.floor(n / 2); i++) {
+            r=a[i];
+            a[i]=a[n-1-i];
+            a[n-1-i]=r;
+        }
+        document.writeln(`<h1>Reverse Array :${a}</h1>`);
+    </script>
+</body>
+
+</html>

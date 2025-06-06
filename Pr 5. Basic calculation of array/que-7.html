@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. Find all odd numbers in an array.</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1> Original Array :${a}</h1>`);
+        let odd = a.filter(a => a % 2 != 0);
+        document.writeln(`<h1>Odd numbers in an array:${odd}</h1>`);
+
+    </script>
+</body>
+
+</html>

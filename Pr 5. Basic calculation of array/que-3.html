@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Find the maximum and minimum values in an array.</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        let max_num = a[0];
+        let min_num = a[0];
+        document.writeln(`<h1>Original Array :${a}</h1>`);
+        for (let i = 0; i < n; i++) {
+            if (a[i] > max_num) {
+                max_num = a[i];
+            }
+        }
+        for (let i = 0; i < n; i++) {
+            if (a[i]<min_num) {
+                min_num = a[i];
+            }
+        }
+        document.writeln(`<h1>Maximum Number In Array is:${max_num}</h1>`);
+        document.writeln(`<h1>Minimum Number In Array is:${min_num}</h1>`);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14. Find the average of an array of numbers.</title>
+</head>
+<body>
+    <script>
+        let a = [];
+        let n=parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i]=parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1>Original Array :${a}</h1>`);
+
+        let total = a.reduce((acc, curr) => acc + curr, 0);
+        let average=total/a.length;
+        document.writeln(`<h1>Average of all numbers in an array:${average}</h1>`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11. Check if all elements are greater than 5.</title>
+</head>
+
+<body>
+    <script>
+        let a = [];
+        let n = parseInt(prompt("Enter Array Size:"));
+        for (let i = 0; i < n; i++) {
+            a[i] = parseInt(prompt(`a[${i}]:`));
+        }
+        document.writeln(`<h1> Original Array :${a}</h1>`);
+        document.writeln(`<h1>${a.every(a => a > 5)}</h1>`);
+    </script>
+</body>
+
+</html>
