@@ -8,19 +8,42 @@
 </head>
 
 <body>
-    <div>
+    <div style="display: flex;">
         <div style="display: flex; flex-direction: column; align-items: start;">
-            <button onclick="displayTable()" style=" font-size: 20px; padding: 5px 10px; margin-top: 10px; "> Display all data</button>
-            <button onclick="filterBySubject('English')" style="font-size: 20px; padding: 5px 10px; margin-top: 10px; "> Filter students by subject:</button>
-            <button onclick="sortByName()" style="font-size: 20px; padding: 5px 10px; margin-top: 10px;"> Sort students by name:</button>
-            <button onclick="name_grade()" style="font-size: 20px;  margin-top: 10px;">Student names and their grades:</button>
-        </div>
-       
-        <div align="center">
-        <table id="stud" border="2" cellpadding="4" cellspacing="2">
+            <button onclick="displayTable()" style=" font-size: 20px; width:75%"> Display
+                all data</button>
+            <div>
 
-        </table>
+                <button onclick="filterBySubject()" style="font-size: 20px; width: 75%; margin-top: 10px;">
+                    Filter students by subject</button>
+                <select name="sub" id="sub" style="margin-top: 10px;">
+                    <option value="English">English</option>
+                    <option value="Math">Math</option>
+                    <option value="Science">Science</option>
+                    <option value="History">History</option>
+                </select>
+            </div>
+            <button onclick="sortByName()" style="font-size: 20px; width: 75%; margin-top: 10px;"> Sort students
+                by name</button>
+            <button onclick="name_grade()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Student names and
+                their
+                grades</button>
+            <button onclick="averageAge()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Average Age of All
+                students</button>
+            <button onclick="olderThan18()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Get students older
+                than 18 years:</button>
+            <button onclick="gradeA_subMath()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Find students
+                with grade 'A' and subject 'Math'</button>
+            <button onclick="sortByAge()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Sort students by
+                age</button>
+            <button onclick="searchByName()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Create a function
+                to search for a student by name</button>
+            <input type="text" id="name" placeholder="Enter Student Name" style="margin-top: 10px;">
         </div>
+        <div>
+            <table id="stud" border="2" cellpadding="5" cellspacing="2"></table>
+        </div>
+
     </div>
     <script>
 
@@ -71,8 +94,10 @@
                                 </tr>`;
             }
         }
-        function filterBySubject(subject) {
+        function filterBySubject() {
+
             clearTable();
+            const subj = document.getElementById('sub').value;
             table.innerHTML = ` 
                             <tr>
                                 <th>Id</th>
@@ -82,7 +107,7 @@
                                 <th>Subjet</th>
                             </tr>`;
             for (let i of students) {
-                if (i.subject === subject) {
+                if (i.subject === subj) {
                     table.innerHTML += `<tr>
                                     <td>${i.id}</td>
                                     <td>${i.name}</td>
@@ -95,7 +120,7 @@
         }
         function sortByName() {
             students.sort();
-            table.innerHTML= ` 
+            table.innerHTML = ` 
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
@@ -126,8 +151,110 @@
                                 </tr>`;
             }
         }
+        function averageAge() {
+            let sumAge = 0;
+            for (let i of students) {
+                sumAge += i.age;
+            }
+            let avgAge = sumAge / students.length;
+            table.innerHTML = `<tr><td>Average Age of All students is ${avgAge}</td></tr>`;
+        }
+        function olderThan18() {
+            table.innerHTML = ` 
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Grade</th>
+                                <th>Subjet</th>
+                            </tr>`;
+            for (let i of students) {
+                if (i.age >= 18) {
+                    table.innerHTML += `<tr>
+                                        <td>${i.id}</td>
+                                        <td>${i.name}</td>
+                                        <td>${i.age}</td>
+                                        <td>${i.grade}</td>
+                                        <td>${i.subject}</td>
+                                    </tr>`;
+                }
+            }
+        }
+        function gradeA_subMath() {
+            table.innerHTML = ` 
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Grade</th>
+                                <th>Subjet</th>
+                            </tr>`;
+            for (let i of students) {
+                if (i.grade == 'A' && i.subject == "Math") {
+                    table.innerHTML += `<tr>
+                                        <td>${i.id}</td>
+                                        <td>${i.name}</td>
+                                        <td>${i.age}</td>
+                                        <td>${i.grade}</td>
+                                        <td>${i.subject}</td>
+                                    </tr>`;
+                }
+            }
+        }
+        function sortByAge() {
+            for (let i = 0; i < students.length - 1; i++) {
+                for (let j = 0; j < students.length - i - 1; j++) {
+                    if (students[j].age > students[j + 1].age) {
+                        let temp = students[j];
+                        students[j] = students[j + 1];
+                        students[j + 1] = temp;
+                    }
+                }
+            }
+            table.innerHTML = ` 
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Grade</th>
+                                <th>Subjet</th>
+                            </tr>`;
+            for (let i of students) {
+                table.innerHTML += `<tr>
+                                    <td>${i.id}</td>
+                                    <td>${i.name}</td>
+                                    <td>${i.age}</td>
+                                    <td>${i.grade}</td>
+                                    <td>${i.subject}</td>
+                                </tr>`;
+            }
+        }
+        function searchByName() {
 
+            clearTable();
+            const name = document.getElementById('name').value;
+            table.innerHTML = ` 
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Grade</th>
+                                <th>Subjet</th>
+                            </tr>`;
+            for (let i of students) {
+                if (i.name === name) {
+                    table.innerHTML += `<tr>
+                                    <td>${i.id}</td>
+                                    <td>${i.name}</td>
+                                    <td>${i.age}</td>
+                                    <td>${i.grade}</td>
+                                    <td>${i.subject}</td>
+                                </tr>`;
+                }
+            }
 
+        }
+        
 
 
     </script>
