@@ -5,46 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pr 6. Array of object</title>
+    <style>
+        .main {
+            display: flex;
+            max-width: 1570px;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            align-items: start;
+            flex-wrap: wrap;
+        }
+
+        .Btns button {
+            font-size: 20px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 1px 1px 2px;
+
+        }
+
+        .Btns select,
+        .Btns input {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 1px 1px 2px;
+        }
+
+        .table_class {
+            align-items: center;
+            margin-top: 30px;
+            box-shadow: 1px 1px 2px;
+            width: 100%;
+        }
+
+        .table_class table {
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .table_class th,td {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .table_class table th {
+            background-color: rgb(201, 197, 197);
+            border: 1px solid rgb(117, 114, 114);
+        }
+       
+    </style>
 </head>
 
 <body>
-    <div style="display: flex;">
-        <div style="display: flex; flex-direction: column; align-items: start;">
-            <button onclick="displayTable()" style=" font-size: 20px; width:75%"> Display
-                all data</button>
-            <div>
-
-                <button onclick="filterBySubject()" style="font-size: 20px; width: 75%; margin-top: 10px;">
-                    Filter students by subject</button>
-                <select name="sub" id="sub" style="margin-top: 10px;">
+    <div class="main">
+        <div class="Btns">
+            <div style="margin: 0;">
+                <button onclick="filterBySubject()">Filter students by subject</button>
+                <select name="sub" id="sub">
+                    <option value="select">Select subject</option>
                     <option value="English">English</option>
                     <option value="Math">Math</option>
                     <option value="Science">Science</option>
                     <option value="History">History</option>
                 </select>
             </div>
-            <button onclick="sortByName()" style="font-size: 20px; width: 75%; margin-top: 10px;"> Sort students
-                by name</button>
-            <button onclick="name_grade()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Student names and
-                their
-                grades</button>
-            <button onclick="averageAge()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Average Age of All
-                students</button>
-            <button onclick="olderThan18()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Get students older
-                than 18 years:</button>
-            <button onclick="gradeA_subMath()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Find students
-                with grade 'A' and subject 'Math'</button>
-            <button onclick="sortByAge()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Sort students by
-                age</button>
-            <button onclick="searchByName()" style="font-size: 20px;  width: 75%; margin-top: 10px;">Create a function
-                to search for a student by name</button>
-            <input type="text" id="name" placeholder="Enter Student Name" style="margin-top: 10px;">
+            <button onclick="sortByName()"> Sort students </button>
+            <button onclick="name_grade()">Student names and Grades</button>
+            <button onclick="averageAge()">Average Age of All students</button>
+            <button onclick="olderThan18()">Student age >= 18</button>
+            <button onclick="gradeA_subMath()">Grade 'A' & Subject 'Math'</button>
+            <button onclick="sortByAge()">Sort students by age</button>
+            <button onclick="searchByName()">Search By Student Name</button>
+            <input type="text" id="name" placeholder="Enter Student Name">
         </div>
-        <div>
-            <table id="stud" border="2" cellpadding="5" cellspacing="2"></table>
+        <div class="table_class">
+            <table id="stud" cellpadding="5" cellspacing="5"></table>
         </div>
 
     </div>
+
     <script>
 
         const students = [
@@ -77,21 +128,24 @@
         function displayTable() {
             clearTable();
             table.innerHTML = `
+            
+                            <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Age</th>
                                 <th>Grade</th>
                                 <th>Subjet</th>
-                            </tr>`;
+                            </tr></thead>`;
             for (let i of students) {
-                table.innerHTML += `<tr>
+                table.innerHTML += `<tbody>
+                                    <tr>
                                     <td>${i.id}</td>
                                     <td>${i.name}</td>
                                     <td>${i.age}</td>
                                     <td>${i.grade}</td>
                                     <td>${i.subject}</td>
-                                </tr>`;
+                                </tr></tbody>`;
             }
         }
         function filterBySubject() {
@@ -252,11 +306,7 @@
                                 </tr>`;
                 }
             }
-
         }
-        
-
-
     </script>
 </body>
 
