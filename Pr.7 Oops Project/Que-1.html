@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Details</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(name,age,country){
+                this.name=name;
+                this.age=age;
+                this.country=country;
+            }
+            display(){
+                document.writeln(`<h2>Person name:${this.name}</h2>`);
+                document.writeln(`<h2>Person Age:${this.age}</h2>`);
+                document.writeln(`<h2>Person Country:${this.country}</h2>`);
+            }
+        }
+        let name=prompt("Enter Person Name:");
+        let age=parseInt(prompt("Enter Person Age:"));
+        let country=prompt("Enter Person Contry:");
+        let p=new Person(name,age,country);
+        document.writeln("<h1>Person Details</h1>");   
+        document.writeln("<h1>----------------------------------------------------</h1>");    
+        p.display();
+        name=prompt("Enter Person Name:");
+        age=parseInt(prompt("Enter Person Age:"));
+        country=prompt("Enter Person Contry:");
+        let p1=new Person(name,age,country);
+        p1.display();
+
+    </script>
+</body>
+</html>

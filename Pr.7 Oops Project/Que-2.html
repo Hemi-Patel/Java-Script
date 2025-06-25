@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+</head>
+
+<body>
+    <script>
+        class BankAccount {
+            constructor(ac_no, balance) {
+                this.ac_no = ac_no;
+                this.balance = balance;
+            }
+            withdrawMoney(withdrawAmount) {
+                if (withdrawAmount >= this.balance) {
+                    document.writeln("<h3>Insufficient balance</h3>");
+                    document.writeln(`<h3>Account balance :${this.balance}</h3>`);
+                } else {
+                    this.balance = this.balance - withdrawAmount;
+                    document.writeln(`<h3>Account balance After Withdraw ${withdrawAmount} is:${this.balance}</h3>`);
+                }
+            }
+            depositeMoney(depositeAmount) {
+                this.balance += depositeAmount;
+                document.writeln(`<h3>Account  balance After Deposite ${depositeAmount} is:${this.balance}</h3>`);
+            }
+        }
+        let ac_no = parseInt(prompt("Enter Account Number:"));
+        let balance = parseFloat(prompt("Enter Account Opening Balance "));
+
+        let b = new BankAccount(ac_no, balance);
+
+        document.writeln(`<h3>Account Number :${balance}</h3>`);
+        document.writeln(`<h3>Opening balance:${balance}</h3>`);
+
+        while (1) {
+            let ch = parseInt(prompt(`
+            Press 1 for Deposite
+            Press 2 for Withdraw
+            Press 3 For Exit
+            Enter Your Choice: `));
+            if (ch === 3) {
+                document.writeln(`<h3> Thank you.............</h3>`);
+                break;
+            }
+            switch (ch) {
+                case 1:
+                    let depositeAmount = parseFloat(prompt("Enter Deposite Amount"));
+                    b.depositeMoney(depositeAmount);
+                    break;
+                case 2:
+                    let withdrawAmount = parseFloat(prompt("Enter Withdraw Amount"));
+                    b.withdrawMoney(withdrawAmount);
+                    break;
+                default:
+                    document.writeln(`<h3>Wrong Choice.............</h3>`);
+                    break;
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
