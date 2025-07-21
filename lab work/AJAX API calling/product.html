@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Products</title>
+</head>
+
+<body>
+    <h2 id="total"></h2>
+    <h2 id="skip"></h2>
+    <h2 id="limit"></h2>
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="products"></tbody>
+
+    </table>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://dummyjson.com/products',
+            success: function (res) {
+                let tbl = "";
+                res.products.map((val) => {
+                    tbl += `  <tr>
+                                <td>${val.id}</td>
+                                <td>${val.title}</td>
+                                <td>${val.description}</td>
+                                <td>${val.category}</td>
+                                <td>${val.price}</td>
+                                <td>`
+                                    val.images.map((img)=>{
+                                        tbl += `
+                                                    <img src="${img}" width="75"/>
+                                                `
+                                    })
+                               tbl += `</td>
+                            </tr>`
+                })
+                document.getElementById('products').innerHTML = tbl;
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let oldpass = "123";
+        let enteroldPass = prompt("Enter Your old Password");
+
+        if (oldpass == enteroldPass) {
+            let newpass = parseInt(prompt("Enter Your New password"));
+            let confirmpass = parseInt(prompt("Enter Confirm password"));
+            if (newpass == confirmpass) {
+                if (newpass != oldpass) {
+                    window.alert("Password change Successfully!!!!")
+                }
+                else {
+                    window.alert("oldpassword and newpassword are same")
+                }
+            } else {
+                window.alert("Newpassword and confirm password are not match")
+            }
+        }
+    </script>
+</body>
+
+</html>
