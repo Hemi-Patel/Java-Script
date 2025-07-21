@@ -75,6 +75,11 @@
         getCart();
         let carts=JSON.parse(localStorage.getItem('cart'))||[];
         const addToCart = (id)=>{
+            let exsist=carts.find((val => val.id==id))
+            if(exsist){
+                alert("Already exist in cart")
+                return;
+            }
             let single=data.find((val => val.id==id))
             carts.push(single);
             localStorage.setItem('cart',JSON.stringify(carts));

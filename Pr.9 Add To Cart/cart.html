@@ -53,7 +53,7 @@
                         <td>${val.name}</td>
                         <td><img src="${val.image}" width="100"/></td>
                         <td>${val.price}</td>
-                        <td><input type="number" id="qty_${val.id}" value="${val.qty}" onchange="updateCart(${val.id})"></td>
+                        <td><input type="number" id="qty_${val.id}" value="${val.qty}" min="1" onchange="updateCart(${val.id})"></td>
                         <td>${val.price * val.qty}</td>
                         
                     </tr>`;
