@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COVID-19 India Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f5;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+        }
+
+        .summary-card {
+            background-color: #34495e;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .summary-card h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            color: #bdc3c7;
+        }
+
+        .summary-card p {
+            font-size: 20px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .main {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .main h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f4f8fc;
+        }
+
+        tr:hover {
+            background-color: #e9f3fa;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                text-align: center;
+            }
+
+            .main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>🦠 COVID-19 India</h2>
+        <div class="summary-card">
+            <h3>Confirmed Cases</h3>
+            <p id="confirmed">--</p>
+        </div>
+        <div class="summary-card">
+            <h3>Recovered</h3>
+            <p id="recovered">--</p>
+        </div>
+        <div class="summary-card">
+            <h3>Deaths</h3>
+            <p id="deaths">--</p>
+        </div>
+    </div>
+    <div class="main">
+        <h2>State-wise Report</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Confirmed</th>
+                    <th>Recovered</th>
+                    <th>Deaths</th>
+                </tr>
+            </thead>
+            <tbody id="stateData">
+                <!-- State Data -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        fetch('https://api.rootnet.in/covid19-in/stats/latest')
+            .then(res => res.json())
+            .then(data => {
+                const summary = data.data.summary;
+                const states = data.data.regional;
+
+                document.getElementById("confirmed").textContent = summary.total;
+                document.getElementById("recovered").textContent = summary.discharged;
+                document.getElementById("deaths").textContent = summary.deaths;
+
+                const rows = states.map(state => `
+                    <tr>
+                        <td>${state.loc}</td>
+                        <td>${state.totalConfirmed}</td>
+                        <td>${state.discharged}</td>
+                        <td>${state.deaths}</td>
+                    </tr>
+                `).join("");
+
+                document.getElementById("stateData").innerHTML = rows;
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById("stateData").innerHTML = "<tr><td colspan='4'>Failed to load data.</td></tr>";
+            });
+    </script>
+</body>
+
+</html>
