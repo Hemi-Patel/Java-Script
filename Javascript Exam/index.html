@@ -7,155 +7,161 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #eef2f7;
+      background-color: #f4f6f9;
     }
     .card {
       border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     }
-    .form-label {
-      font-weight: 500;
-    }
-    .badge-high {
-       color: #000;
-    }
-    .badge-medium {
-      
-      color: #000;
-    }
-    .badge-low {
-       color: #000;
-    }
+    .badge-high { background-color: #dc3545; }
+    .badge-medium { background-color: #ffc107; }
+    .badge-low { background-color: #198754; }
   </style>
 </head>
+
 <body>
+  <div class="container py-5">
+    <h2 class="text-center mb-4">📋 Task Manager</h2>
 
-<div class="container py-5">
-  <h2 class="text-center mb-4">📋 Task Manager</h2>
+    <div class="row g-4">
+     
+      <div class="col-md-4">
+        <div class="card p-4">
+          <form onsubmit="formSubmit(event)">
+            <input type="hidden" id="editId">
+            <div class="mb-3">
+              <label class="form-label">Task</label>
+              <input type="text" class="form-control" id="task" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Priority</label>
+              <select id="priority" class="form-select">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+            <button class="btn btn-primary w-100" type="submit" id="submitBtn">Add Task</button>
+          </form>
+        </div>
+      </div>
 
-  <div class="row">
-   
-    <div class="col-md-4">
-      <div class="card p-4">
-        <form onsubmit="handleSubmit(event)">
-          <input type="hidden" id="editId">
-          <div class="mb-3">
-            <label class="form-label">Task</label>
-            <input type="text" class="form-control" id="task" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Priority</label>
-            <select id="priority" class="form-select">
-              <option value="High">High </option>
-              <option value="Medium" selected>Medium </option>
-              <option value="Low">Low </option>
+     
+      <div class="col-md-8">
+        <div class="card p-4">
+          <div class="d-flex justify-content-between mb-3">
+            <h5 class="mb-0">All Tasks</h5>
+            <select id="filterPriority" class="form-select w-auto" onchange="filterTasks()">
+              <option value="All">All Priorities</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
             </select>
           </div>
-          <button class="btn btn-primary w-100" type="submit" id="submitBtn">Add Task</button>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-md-8">
-      <div class="card p-3">
-        <h5 class="mb-3">All Tasks</h5>
-        <div class="table-responsive">
-          <table class="table table-bordered text-center align-middle">
-            <thead class="table-light">
-              <tr>
-                <th>ID</th>
-                <th>Task</th>
-                <th>Date</th>
-                <th>Priority</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="taskList"></tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Task</th>
+                  <th>Date</th>
+                  <th>Priority</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="taskList"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+  <script>
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-<script>
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    function formSubmit(e) {
+      e.preventDefault();
+      const task = document.getElementById("task").value;
+      const date = document.getElementById("date").value;
+      const priority = document.getElementById("priority").value;
+      const editId = document.getElementById("editId").value;
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const task = document.getElementById("task").value;
-    const date = document.getElementById("date").value;
-    const priority = document.getElementById("priority").value;
-    const editId = document.getElementById("editId").value;
+      if (editId) {
+        tasks = tasks.map(t =>
+          t.id === parseInt(editId) ? { ...t, task, date, priority } : t
+        );
+        document.getElementById("submitBtn").innerText = "Add Task";
+      } else {
+        const id = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
+        tasks.push({ id, task, date, priority });
+      }
 
-    if (editId) {
-      tasks = tasks.map(t =>
-        t.id === parseInt(editId) ? { ...t, task, date, priority } : t
-      );
-      document.getElementById("submitBtn").innerText = "Add Task";
-    } else {
-      const id = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
-      tasks.push({ id, task, date, priority });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      clearForm();
+      displayTasks();
     }
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    clearForm();
-    renderTasks();
-  }
+    function displayTasks(filtered = "All") {
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
 
-  function renderTasks() {
-    let html = "";
-    tasks.forEach(t => {
-      let badgeClass = "";
-      if (t.priority === "High") badgeClass = "badge-high";
-      if (t.priority === "Medium") badgeClass = "badge-medium";
-      if (t.priority === "Low") badgeClass = "badge-low";
+      const filteredTasks = filtered === "All" ? tasks : tasks.filter(t => t.priority === filtered);
 
-      html += `
-        <tr>
-          <td>${t.id}</td>
-          <td>${t.task}</td>
-          <td>${t.date}</td>
-          <td><span class="badge ${badgeClass}">${t.priority}</span></td>
-          <td>
-            <button class="btn btn-sm btn-warning" onclick="editTask(${t.id})">Edit</button>
-            <button class="btn btn-sm btn-danger" onclick="deleteTask(${t.id})">Delete</button>
-          </td>
-        </tr>`;
-    });
-    document.getElementById("taskList").innerHTML = html;
-  }
+      filteredTasks.forEach(t => {
+        let badgeClass = "";
+        if (t.priority === "High") badgeClass = "badge-high";
+        if (t.priority === "Medium") badgeClass = "badge-medium";
+        if (t.priority === "Low") badgeClass = "badge-low";
 
-  function clearForm() {
-    document.getElementById("task").value = "";
-    document.getElementById("date").value = "";
-    document.getElementById("priority").value = "Medium";
-    document.getElementById("editId").value = "";
-    document.getElementById("submitBtn").innerText = "Add Task";
-  }
+        const row = `
+          <tr>
+            <td>${t.id}</td>
+            <td>${t.task}</td>
+            <td>${t.date}</td>
+            <td><span class="badge text-white ${badgeClass}">${t.priority}</span></td>
+            <td>
+              <button class="btn btn-sm btn-warning" onclick="editTask(${t.id})">Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteTask(${t.id})">Delete</button>
+            </td>
+          </tr>`;
+        taskList.innerHTML += row;
+      });
+    }
 
-  function deleteTask(id) {
-    tasks = tasks.filter(t => t.id !== id);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    renderTasks();
-  }
+    function clearForm() {
+      document.getElementById("task").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("priority").value = "Medium";
+      document.getElementById("editId").value = "";
+      document.getElementById("submitBtn").innerText = "Add Task";
+    }
 
-  function editTask(id) {
-    const task = tasks.find(t => t.id === id);
-    document.getElementById("task").value = task.task;
-    document.getElementById("date").value = task.date;
-    document.getElementById("priority").value = task.priority;
-    document.getElementById("editId").value = task.id;
-    document.getElementById("submitBtn").innerText = "Update Task";
-  }
+    function deleteTask(id) {
+      tasks = tasks.filter(t => t.id !== id);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      displayTasks(document.getElementById("filterPriority").value);
+    }
 
-  renderTasks();
-</script>
+    function editTask(id) {
+      const task = tasks.find(t => t.id === id);
+      document.getElementById("task").value = task.task;
+      document.getElementById("date").value = task.date;
+      document.getElementById("priority").value = task.priority;
+      document.getElementById("editId").value = task.id;
+      document.getElementById("submitBtn").innerText = "Update Task";
+    }
 
+    function filterTasks() {
+      const selected = document.getElementById("filterPriority").value;
+      displayTasks(selected);
+    }
+
+    displayTasks();
+  </script>
 </body>
 </html>
