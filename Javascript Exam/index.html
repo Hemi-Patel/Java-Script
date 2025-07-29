@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <style>
+        th,
+        td {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Task Management System</h1>
+        <div class="row mt-5">
+            <div class="d-flex">
+                <div class="form" align="left" style="border: 1px solid black; width: 400px; padding: 10px;">
+                    <form onsubmit="formSubmit(event)">
+                        <input type="hidden" id="editId">
+                        <label>Task</label>
+                        <input type="text" id="task" required><br><br>
+                        <label>Date</label>
+                        <input type="date" id="date" required><br><br>
+                        <label>Priority</label>
+                        <select name="Priority" id="priority">
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select><br><br>
+                        <button type="submit" id="submitBtn">Submit</button>
+                    </form>
+                </div>
+
+                <div class="displayTask ms-5">
+                    <table style="border : 2px solid black;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Task</th>
+                                <th>Date</th>
+                                <th>Priority</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasks">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        const formSubmit = (event) => {
+            event.preventDefault();
+            let task = document.getElementById('task').value;
+            let date = document.getElementById('date').value;
+            let priority = document.getElementById('priority').value;
+            let editId = document.getElementById('editId').value;
+
+            if (editId) {
+              
+                tasks = tasks.map(t => {
+                    if (t.id === parseInt(editId)) {
+                        return { ...t, task, date, priority };
+                    }
+                    return t;
+                });
+                document.getElementById('submitBtn').innerText = "Submit";
+            } else {
+               
+                let id = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
+                tasks.push({ id, task, date, priority });
+            }
+
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            displayTask();
+
+            document.getElementById('task').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('priority').value = 'Medium';
+            document.getElementById('editId').value = '';
+        }
+
+        const displayTask = () => {
+            tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            let tbl = "";
+
+            tasks.forEach((val) => {
+                tbl += `
+                <tr>
+                    <td>${val.id}</td>
+                    <td>${val.task}</td>
+                    <td>${val.date}</td>
+                    <td>${val.priority}</td>
+                    <td>
+                        <button  onclick="editTask(${val.id})">Edit</button>
+                        <button onclick="deleteTask(${val.id})">Delete</button>
+                    </td>
+                </tr>`;
+            });
+
+            document.getElementById('tasks').innerHTML = tbl;
+        }
+
+        const deleteTask = (id) => {
+            tasks = tasks.filter(task => task.id !== id);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            displayTask();
+        }
+
+        const editTask = (id) => {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                document.getElementById('task').value = task.task;
+                document.getElementById('date').value = task.date;
+                document.getElementById('priority').value = task.priority;
+                document.getElementById('editId').value = task.id;
+                document.getElementById('submitBtn').innerText = "Update Task";
+            }
+        }
+
+        displayTask();
+    </script>
+
+</body>
+
+</html>
