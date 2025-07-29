@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add to Cart</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+  />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="header d-flex align-items-center justify-content-between mt-3 mb-3">
+        <h1 class="text-center flex-grow-1">Add To Cart</h1>
+        <a href="cart.html" class="btn btn-outline-primary me-3">Go to Cart</a>
+        <select name="filter_price" id="price_filter"  onchange="filterProducts()">
+          <option value="price">Sort by Price</option>
+          <option value="High to low">High to low</option>
+          <option value="Low to high">Low to high</option>
+        </select>
+      </div>
+
+      <div class="row products" id="products"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    var data = [
+      { id: 1, name: "White-1", image: "images/white-1.jpg", price: 400, qty: 1 },
+      { id: 2, name: "White-2", image: "images/white-2.jpg", price: 500, qty: 1 },
+      { id: 3, name: "White-3", image: "images/white-3.jpg", price: 200, qty: 1 },
+      { id: 4, name: "Orange-1", image: "images/Orange-1.jpg", price: 700, qty: 1 },
+      { id: 5, name: "Beige Shirt", image: "images/beige.jpg", price: 800, qty: 1 },
+      { id: 6, name: "Light-Blue Shirt", image: "images/light-blue.jpg", price: 1000, qty: 1 }
+    ];
+
+    function displayProduct(products) {
+      var tbl = "";
+      for (var i = 0; i < products.length; i++) {
+        var val = products[i];
+        tbl += `
+          <div class="col-md-3">
+            <div class="card m-2 shadow">
+              <img src="${val.image}" class="card-img-top" alt="${val.name}">
+              <div class="card-body">
+                <h5 class="card-title">${val.name}</h5>
+                <h6 class="card-text">Price: ₹${val.price}</h6>
+                <a href="#" onclick="addtocart(${val.id})" class="btn btn-primary">Add To Cart</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      document.getElementById("products").innerHTML = tbl;
+    }
+
+    function addtocart(id) {
+      var carts = JSON.parse(localStorage.getItem("carts")) || [];
+      for (var i = 0; i < carts.length; i++) {
+        if (carts[i].id === id) {
+          alert("Already exists in cart");
+          return;
+        }
+      }
+
+      for (var j = 0; j < data.length; j++) {
+        if (data[j].id === id) {
+          carts.push(data[j]);
+          break;
+        }
+      }
+
+      localStorage.setItem("carts", JSON.stringify(carts));
+      alert("Added to cart");
+    }
+
+    function filterProducts() {
+      var filter = document.getElementById("price_filter").value;
+      var sortedData = [];
+      for (var i = 0; i < data.length; i++) {
+        sortedData.push(data[i]);
+      }
+
+      if (filter === "High to low") {
+        sortedData.sort(function(a, b) {
+          return b.price - a.price;
+        });
+      } else if (filter === "Low to high") {
+        sortedData.sort(function(a, b) {
+          return a.price - b.price;
+        });
+      }
+
+      displayProduct(sortedData);
+    }
+    displayProduct(data);
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>cart</h1>
+            <h1><a href="index.html"  class="btn btn-outline-primary me-3">continue Shopping</a></h1>
+            <div class="cart-data">
+                <table class="table" align="center">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart">
+                        <img src="" alt="">
+                    </tbody>
+                    <tfoot>
+                        <h1 id="bill"></h1>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const getcart = (id) => {
+            let carts = JSON.parse(localStorage.getItem('carts')) || [];
+            let tbl = "";
+            let Amount=0;
+            carts.map((val) => {
+                Amount = Amount + (val.price * val.qty);
+
+                tbl += ` 
+                    <tr>
+                        <td>${val.id}</td>
+                        <td>${val.name}</td>
+                        <td><img src="${val.image}" alt="" width=50></td>
+                        <td>${val.price}</td>
+                        <td><input type="number" id="qty_${val.id}" onchange="updateCart(${val.id})" value="${val.qty}" min=1></td>
+                        <td>${val.qty * val.price}</td>
+                        <td><a href="#" onclick="removeItem(${val.id})" class="btn">REMOVE</td>
+                    </tr>
+                `
+            })
+            document.getElementById('cart').innerHTML = tbl;
+            document.getElementById('bill').innerHTML = Amount;
+
+        }
+        getcart();
+
+        const updateCart = (id) => {
+            let carts = JSON.parse(localStorage.getItem('carts')) || [];
+            let qty = document.getElementById(`qty_${id}`).value;
+            let up = carts.map((val) => {
+                if (val.id == id) {
+                    val.qty = parseInt(qty);
+                }
+                return val;
+            })
+            localStorage.setItem('carts', JSON.stringify(up));
+            getcart();
+        }
+        const removeItem = (id) => {
+            let carts = JSON.parse(localStorage.getItem('carts')) || [];
+            carts = carts.filter((val) => val.id != id);
+            localStorage.setItem('carts', JSON.stringify(carts));
+            getcart();
+            alert("Deleted Products from cart")
+        }
+
+    </script>
+</body>
+
+</html>
